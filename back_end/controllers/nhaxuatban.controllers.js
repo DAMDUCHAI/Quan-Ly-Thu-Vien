@@ -1,4 +1,6 @@
 const {tbNhaXuatBan,sequelize} =require('../models')
+const { Op } = require("sequelize");
+
 const createPublisher = async (req, res) => {
   const {Ten,Phone,Email,DiaChi,NguoiDaiDien} = req.body; 
  try {
@@ -12,9 +14,20 @@ const createPublisher = async (req, res) => {
 const getListPublisher = async (req, res) => {
     
     try {
-
+      const { name } = req.query;
+      if(name){
+        const publisherList = await tbNhaXuatBan.findAll({
+          where: {
+            Ten: {
+              [Op.substring]: name
+            }
+          }
+        });
+        res.status(200).send(publisherList);
+      }else{
         const publisherList = await tbNhaXuatBan.findAll();
         res.status(200).send(publisherList);
+      }
       
     } catch (error) {
       res.status(500).send(error);
