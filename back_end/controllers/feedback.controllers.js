@@ -16,12 +16,23 @@ const MaDocGia =results[0].id
  
 
   const getAllFeedback =async (req,res,)=>{
+const {id}=req.params;
+try {
+if(id!=2){
+  let [results] = await sequelize.query(`select tbfeedbacks.id,tbfeedbacks.TrangThai,tbthongtinchungs.Ten,tbthethuviens.MaSinhVien,tbacounts.Email,tbfeedbacks.TieuDe,tbfeedbacks.NoiDung from tbdocgia right join tbfeedbacks on tbdocgia.id =tbfeedbacks.MaDocGia inner join tbthongtinchungs
+  on tbthongtinchungs.id=tbdocgia.MaThongTinChung inner join tbthethuviens on tbthethuviens.id=tbdocgia.MaThe inner join tbacounts
+  on tbacounts.id =tbdocgia.MaAcount where tbfeedbacks.TrangThai=${id}`)
+  res.status(200).send(results);
+}
 
-    try {
-      const [results] = await sequelize.query(` select tbfeedbacks.id,tbfeedbacks.TrangThai,tbthongtinchungs.Ten,tbthethuviens.MaSinhVien,tbacounts.Email,tbfeedbacks.TieuDe,tbfeedbacks.NoiDung from tbdocgia left join tbfeedbacks on tbdocgia.id =tbfeedbacks.MaDocGia inner join tbthongtinchungs
-      on tbthongtinchungs.id=tbdocgia.MaThongTinChung inner join tbthethuviens on tbthethuviens.id=tbdocgia.MaThe inner join tbacounts
-      on tbacounts.id =tbdocgia.MaAcount`)
-      res.status(200).send(results);
+else{
+  let [results] = await sequelize.query(` select tbfeedbacks.id,tbfeedbacks.TrangThai,tbthongtinchungs.Ten,tbthethuviens.MaSinhVien,tbacounts.Email,tbfeedbacks.TieuDe,tbfeedbacks.NoiDung from tbdocgia right join tbfeedbacks on tbdocgia.id =tbfeedbacks.MaDocGia inner join tbthongtinchungs
+  on tbthongtinchungs.id=tbdocgia.MaThongTinChung inner join tbthethuviens on tbthethuviens.id=tbdocgia.MaThe inner join tbacounts
+  on tbacounts.id =tbdocgia.MaAcount`)
+  res.status(200).send(results);
+}
+
+     
     } catch (error) {
       res.status(500).send(error);
     }
