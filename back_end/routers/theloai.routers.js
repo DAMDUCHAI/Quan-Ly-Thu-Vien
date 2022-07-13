@@ -8,7 +8,7 @@ theloaiRouter.get("/:id"  ,getCategoryBook);
 theloaiRouter.put("/:id"  ,updateCategoryBook);
 theloaiRouter.delete("/:id"  ,deleteCategoryBook);
 
-
+theloaiRouter.delete("/:id"  ,deleteCategoryBookds);
 module.exports = {
     theloaiRouter,
     
