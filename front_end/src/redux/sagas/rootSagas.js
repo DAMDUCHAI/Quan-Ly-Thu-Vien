@@ -9,6 +9,12 @@ import * as genderSaga from './libraryManageSagas/genderSaga'
 import * as borrowSagas from './libraryManageSagas/borrowSagas'
 import * as acountSaga from './libraryManageSagas/acountSaga'
 import * as feedBackSaga from './libraryManageSagas/feedBackSaga'
+import * as commentSaga from './libraryManageSagas/commentSaga'
+import * as moneySaga from './libraryManageSagas/moneySaga'
+import * as rulesSaga from './libraryManageSagas/rulesSaga'
+import * as staffSaga from './libraryManageSagas/staffSaga'
+
+
 export function* rootSagas() {
 
   yield all([
@@ -50,6 +56,51 @@ export function* rootSagas() {
     readerSaga.followUpdateInforReaderSaga(),
     feedBackSaga.followGetListFeedbackSaga(),
     feedBackSaga.followUpdateTrangThaiSaga(),
+
+    commentSaga.followGetListCommentSaga(),
+
+    commentSaga.followCreateCommentSaga(),
+    acountSaga.followChangePass(),
+    bookSaga.followViewBookCardSaga(),
+
+
+    bookSaga.followViewDetaildBookCardSaga(),
+    bookSaga.followGiveBookBackSaga(),
+
+    moneySaga.followGetListMoneySaga(),
+
+    
+    moneySaga.followPaymentSagaSaga(),
+
+    rulesSaga.followGetListRulesSaga(),
+    rulesSaga.followCreateRulesSaga(),
+    rulesSaga.followUpdateRulesSaga(),
+    rulesSaga.followDeleteRulesSaga(),
+
+    acountSaga.followGetNameUser(),
+
+
+    staffSaga.followGetListStaffSaga(),
+
+
+    staffSaga.followCreateStaffSaga(),
+
+
+    staffSaga.followGetStaffSaga(),
+    staffSaga.followUpdateInforStaffSaga(),
+    staffSaga.followUpdateStaffSaga(),
+    acountSaga.followBanAcount(),
+    bookshelfSaga.followDeleteBookshelfSaga(),
+    bookshelfSaga.followUpdateBookshelfSaga(),
+    bookshelfSaga.followCreateBookshelfSaga(),
+    commentSaga.followUpdateCommentSaga(),
+    commentSaga.followDeleteCommentSaga(),
+    bookSaga.followPreviewGiveBookSaga(),
+
+    moneySaga.followGetListMoneyDetaildByReaderSaga()
+
+
+
   ])
 
   
